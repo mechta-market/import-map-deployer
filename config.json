@@ -3,6 +3,6 @@
   "locations": {
     "default": "import-map.json",
     "prod": "maps/import-map.json",
-    "test": "maps/dev-import-map.json"
+    "dev": "maps/dev-import-map.json"
   }
 }
