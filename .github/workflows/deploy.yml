@@ -1,0 +1,26 @@
+name: Root
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE: ${{ github.repository }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login $REGISTRY -u $ --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t $REGISTRY/$IMAGE .
+
+      - name: Push docker image
+        run: docker push $REGISTRY/$IMAGE
